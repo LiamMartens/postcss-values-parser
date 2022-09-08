@@ -121,6 +121,7 @@ export type ChildNode =
   | AtWord
   | Comment
   | Func
+  | Reference
   | Interpolation
   | Numeric
   | Operator
