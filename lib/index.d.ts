@@ -154,6 +154,13 @@ export interface Func extends ContainerBase {
   params: string;
 }
 
+export interface Reference extends ContainerBase {
+  type: "reference";
+  syntax: "$" | "{}";
+  value: string;
+  path: string[];
+}
+
 export interface Interpolation extends ContainerBase {
   type: "interpolation";
   parent: Container;
