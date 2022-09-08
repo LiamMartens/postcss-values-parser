@@ -9,8 +9,7 @@
   included in all copies or substantial portions of this Source Code Form.
 */
 module.exports = {
-  options: {
-    variables: { prefixes: ['--'] }
-  },
-  snapshot: ['--batman', '--main-bg-color']
+  snapshot: ['{spacing.md}', '{spacing}', '{spacing-md}', '$spacing.md', '$spacing'],
+
+  throws: ['{spacing.md']
 };

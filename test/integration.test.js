@@ -26,6 +26,9 @@ test('integration', (t) => {
 
   root = parse('1 / -1');
   t.is(root.nodes.length, 3);
+
+  root = parse('{spacing.lg} $spacing.md');
+  t.is(root.nodes.length, 2);
 });
 
 test('manipulation', (t) => {
