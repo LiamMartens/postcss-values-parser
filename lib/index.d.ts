@@ -218,6 +218,7 @@ export interface ParseOptions {
   ignoreUnknownWords?: boolean;
   interpolation?: boolean | InterpolationOptions;
   variables?: VariablesOptions;
+  referencePathResolver?: null | ((path: string) => string)
 }
 
 export interface InterpolationOptions {
