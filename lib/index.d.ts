@@ -200,6 +200,7 @@ export interface UnicodeRange extends NodeBase {
   type: "unicodeRange";
   parent: Container;
   name: string;
+  value: string;
 }
 
 export interface Word extends NodeBase {
