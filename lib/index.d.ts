@@ -244,7 +244,6 @@ export interface ParseOptions {
   ignoreUnknownWords?: boolean;
   interpolation?: boolean | InterpolationOptions;
   variables?: VariablesOptions;
-  referencePathResolver?: null | ((path: string) => string)
 }
 
 export interface InterpolationOptions {
@@ -264,9 +263,16 @@ interface Builder {
 }
 
 export interface Stringifier {
-  (node: RawNode, builder: Builder): void;
+  (
+    node: RawNode,
+    builder: Builder,
+    referencePathResolver?: (path: string) => string
+  ): void;
 }
 
 export const stringify: Stringifier;
 
-export function nodeToString(node: RawNode): string;
+export function nodeToString(
+  node: RawNode,
+  referencePathResolver?: (path: string) => string
+): string;
