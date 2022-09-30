@@ -266,13 +266,13 @@ export interface Stringifier {
   (
     node: RawNode,
     builder: Builder,
-    referencePathResolver?: (path: string) => string
-  ): void;
+    referencePathResolver?: (path: string) => Promise<string>
+  ): Promise<void>;
 }
 
 export const stringify: Stringifier;
 
 export function nodeToString(
   node: RawNode,
-  referencePathResolver?: (path: string) => string
-): string;
+  referencePathResolver?: (path: string) => Promise<string>
+): Promise<string>;
