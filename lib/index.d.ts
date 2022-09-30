@@ -180,19 +180,18 @@ export interface Func extends ContainerBase {
   name: string;
   params: string;
 }
-
-export interface Reference extends ContainerBase {
-  type: "reference";
-  syntax: "$" | "{}";
-  value: string;
-  path: string[];
-}
-
 export interface Interpolation extends ContainerBase {
   type: "interpolation";
   parent: Container;
   params: string;
   prefix: string;
+}
+
+export interface Reference extends NodeBase {
+  type: "reference";
+  syntax: "$" | "{}";
+  value: string;
+  path: string[];
 }
 
 export interface Numeric extends NodeBase {
