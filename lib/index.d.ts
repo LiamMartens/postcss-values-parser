@@ -115,9 +115,11 @@ export interface Root extends ContainerBase {
   }): postcss.Result;
 }
 
-export type AsRawNode<Node> = Pick<Node, {
+export type AsRawNode<Node> = Omit<Pick<Node, {
   [K in keyof Node]: Node[K] extends CallableFunction ? never : K
-}[keyof Node]>
+}[keyof Node]>, 'parent'> & {
+  parent?: AsRawNode<Root> | AsRawNode<Func> | AsRawNode<Interpolation>;
+}
 
 export type Node = Root | ChildNode;
 export type RawNode = AsRawNode<Root> | RawChildNode
