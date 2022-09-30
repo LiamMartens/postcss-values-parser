@@ -115,7 +115,12 @@ export interface Root extends ContainerBase {
   }): postcss.Result;
 }
 
+export type AsRawNode<Node> = Pick<Node, {
+  [K in keyof Node]: Node[K] extends CallableFunction ? never : K
+}[keyof Node]>
+
 export type Node = Root | ChildNode;
+export type RawNode = AsRawNode<Root> | RawChildNode
 
 export type ChildNode =
   | AtWord
@@ -129,6 +134,19 @@ export type ChildNode =
   | Quoted
   | UnicodeRange
   | Word;
+
+export type RawChildNode =
+  | AsRawNode<AtWord>
+  | AsRawNode<Comment>
+  | AsRawNode<Func>
+  | AsRawNode<Reference>
+  | AsRawNode<Interpolation>
+  | AsRawNode<Numeric>
+  | AsRawNode<Operator>
+  | AsRawNode<Punctuation>
+  | AsRawNode<Quoted>
+  | AsRawNode<UnicodeRange>
+  | AsRawNode<Word>;
 
 export type Container = Root | Func | Interpolation;
 
@@ -239,9 +257,9 @@ interface Builder {
 }
 
 export interface Stringifier {
-  (node: Node, builder: Builder): void;
+  (node: RawNode, builder: Builder): void;
 }
 
 export const stringify: Stringifier;
 
-export function nodeToString(node: Node): string;
+export function nodeToString(node: RawNode): string;
